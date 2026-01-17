@@ -18,6 +18,8 @@
         {% for expense in expenses %}
             <li>
                 {{ expense.name }} - £{{ expense.amount }} ({{ expense.category }})
+                <a href="/edit/{{ expense.id }}">Edit</a>
+                <a href="/delete/{{ expense.id }}" onclick="return confirm('Delete this expense?')">Delete</a>
             </li>
         {% endfor %}
     </ul>

@@ -37,6 +37,32 @@ def add_expense():
 
     return redirect('/')
 
+
+@app.route('/delete/<int:id>')
+def delete_expense(id):
+    expense = Expense.query.get_or_404(id)
+    db.session.delete(expense)
+    db.session.commit()
+    return redirect('/')
+
+
+@app.route('/edit/<int:id>', methods=['GET', 'POST'])
+def edit_expense(id):
+    expense = Expense.query.get_or_404(id)
+
+    if request.method == 'POST':
+        expense.name = request.form['name']
+        expense.amount = float(request.form['amount'])
+        expense.category = request.form['category']
+
+        db.session.commit()
+        return redirect('/')
+
+    return render_template('edit.html', expense=expense)
+
+
+
+
 if __name__ == "__main__":
     if not os.path.exists('expenses.db'):
         with app.app_context():
