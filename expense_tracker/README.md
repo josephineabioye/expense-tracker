@@ -77,6 +77,17 @@ docker run -p 5001:5000 expense_tracker
 http://localhost:5001
 ```
 
+
+### **Run with Docker Compose**
+
+1. Start the app with:
+
+```bash
+docker compose up --build
+
+```
+
+
 ### Project Structure
 
 expense_tracker/
