@@ -1,0 +1,25 @@
+services:
+  web:
+    build: .
+    ports:
+      - "5001:5000"
+    depends_on:
+      - db
+    environment:
+      DB_HOST: db
+      DB_NAME: expense_db
+      DB_USER: expense_user
+      DB_PASSWORD: expense_pass
+
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: expense_user
+      POSTGRES_PASSWORD: expense_pass
+      POSTGRES_DB: expense_db
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+volumes:
+  db_data:
+
